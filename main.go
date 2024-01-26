@@ -1,3 +1,4 @@
+//go:build !js
 // +build !js
 
 package main
@@ -10,8 +11,8 @@ import (
 	"flag"
 
 	"github.com/mitchellh/go-homedir"
-	"github.com/nwidger/nintengo/http"
-	"github.com/nwidger/nintengo/nes"
+	"github.com/peacecwz/nintengo/http"
+	"github.com/peacecwz/nintengo/nes"
 	"gopkg.in/yaml.v2"
 )
 

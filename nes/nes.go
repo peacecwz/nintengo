@@ -19,9 +19,9 @@ import (
 
 	"archive/zip"
 
-	"github.com/nwidger/nintengo/m65go2"
-	"github.com/nwidger/nintengo/rp2ago3"
-	"github.com/nwidger/nintengo/rp2cgo2"
+	"github.com/peacecwz/nintengo/m65go2"
+	"github.com/peacecwz/nintengo/rp2ago3"
+	"github.com/peacecwz/nintengo/rp2cgo2"
 )
 
 //go:generate stringer -type=RunState

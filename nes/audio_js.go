@@ -1,8 +1,13 @@
+//go:build js
 // +build js
 
 package nes
 
-import "syscall/js"
+import (
+	"encoding/binary"
+	"math"
+	"syscall/js"
+)
 
 type JSAudio struct {
 	input      chan int16
@@ -31,8 +36,7 @@ func (audio *JSAudio) Run() {
 	data := buffer.Call("getChannelData", 0)
 
 	slice := make([]float32, data.Length())
-	buf := js.TypedArrayOf(slice)
-	defer buf.Release()
+	byteBuf := make([]byte, len(slice)*4) // 4 bytes per float32
 
 	onendedCallback := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		go func() {
@@ -45,8 +49,16 @@ func (audio *JSAudio) Run() {
 	for {
 		for i := 0; i < audio.sampleSize; i++ {
 			slice[i] = float32(<-audio.input) / float32(0x7fff)
+			binary.LittleEndian.PutUint32(byteBuf[i*4:], math.Float32bits(slice[i]))
 		}
-		buffer.Call("copyToChannel", buf, 0)
+
+		jsBuf := js.Global().Get("Float32Array").New(len(slice))
+
+		jsBufAsUint8 := js.Global().Get("Uint8Array").New(jsBuf.Get("buffer"), jsBuf.Get("byteOffset"), jsBuf.Get("byteLength"))
+
+		js.CopyBytesToJS(jsBufAsUint8, byteBuf)
+
+		buffer.Call("copyToChannel", jsBuf, 0)
 
 		source := ctx.Call("createBufferSource")
 		source.Set("buffer", buffer)

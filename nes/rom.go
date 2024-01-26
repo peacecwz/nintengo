@@ -12,8 +12,8 @@ import (
 
 	"strings"
 
-	"github.com/nwidger/nintengo/rp2ago3"
-	"github.com/nwidger/nintengo/rp2cgo2"
+	"github.com/peacecwz/nintengo/rp2ago3"
+	"github.com/peacecwz/nintengo/rp2cgo2"
 )
 
 func init() {

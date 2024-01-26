@@ -21,35 +21,23 @@ An NES emulator written in Go
 
 ## Build
 
-### Mac OS X/Linux/Windows
-
-1. Install Azul3D by following the official
-   [installation instructions](http://azul3d.org/doc/install) for your
-   platform.
-
-2. `go get -u github.com/nwidger/nintengo`
-
 ### WebAssembly
-
-WebAssembly support requires Go 1.11 or higher.
 
 1. Download nintengo
 
    ```
-   go get -d -u github.com/nwidger/nintengo
+   go get -d -u github.com/peacecwz/nintengo
    ```
 
 2. Build `wasm/nintengo.wasm`
 
    ```
-   cd $GOPATH/src/github.com/nwidger/nintengo
    GOOS=js GOARCH=wasm go build -o wasm/nintengo.wasm .
    ```
 
 3. Start web server running on port 8000
 
    ```
-   cd $GOPATH/src/github.com/nwidger/nintengo/wasm
    go run serve.go -http :8000
    ```
 

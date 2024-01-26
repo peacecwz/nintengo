@@ -36,3 +36,7 @@ TAGS
 *.nst
 *.NES
 *.sav
+
+.idea/
+
+main_js

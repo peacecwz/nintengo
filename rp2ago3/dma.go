@@ -1,6 +1,6 @@
 package rp2ago3
 
-import "github.com/nwidger/nintengo/m65go2"
+import "github.com/peacecwz/nintengo/m65go2"
 
 const NoPending uint32 = 0xffffffff
 

@@ -1,3 +1,4 @@
+//go:build js
 // +build js
 
 package main
@@ -8,7 +9,7 @@ import (
 	"os"
 	"syscall/js"
 
-	"github.com/nwidger/nintengo/nes"
+	"github.com/peacecwz/nintengo/nes"
 )
 
 func main() {

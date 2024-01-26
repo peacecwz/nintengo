@@ -1,3 +1,4 @@
+//go:build js
 // +build js
 
 package nes
@@ -204,8 +205,7 @@ func (video *JSVideo) Run() {
 	xh.Cap /= size
 	buf32 = *(*[]uint32)(unsafe.Pointer(&xh))
 
-	buf8 := js.TypedArrayOf(buf)
-	defer buf8.Release()
+	jsBuf := js.Global().Get("Uint8Array").New(len(buf))
 
 	for {
 		colors := <-video.input
@@ -215,7 +215,9 @@ func (video *JSVideo) Run() {
 		}
 		video.framePool.Put(colors)
 
-		data.Call("set", buf8)
+		js.CopyBytesToJS(jsBuf, buf)
+
+		data.Call("set", jsBuf)
 		ctx.Call("putImageData", img, 0, 0)
 
 		if video.overscan {

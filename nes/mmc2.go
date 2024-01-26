@@ -3,8 +3,8 @@ package nes
 import (
 	"fmt"
 
-	"github.com/nwidger/nintengo/rp2ago3"
-	"github.com/nwidger/nintengo/rp2cgo2"
+	"github.com/peacecwz/nintengo/rp2ago3"
+	"github.com/peacecwz/nintengo/rp2cgo2"
 )
 
 type MMC2Registers struct {

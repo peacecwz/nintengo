@@ -3,7 +3,7 @@ package nes
 import (
 	"fmt"
 
-	"github.com/nwidger/nintengo/rp2ago3"
+	"github.com/peacecwz/nintengo/rp2ago3"
 )
 
 type ANROMRegisters struct {
